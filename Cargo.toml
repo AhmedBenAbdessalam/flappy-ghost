@@ -1,0 +1,8 @@
+[package]
+name = "flappy_ghost"
+version = "0.1.0"
+authors = ["Ahmed Ben Abdessalem"]
+edition = "2021"
+
+[dependencies]
+bracket-lib = "~0.8.1"
