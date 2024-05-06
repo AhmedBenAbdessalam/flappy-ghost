@@ -5,6 +5,7 @@ const SCREEN_HEIGHT: i32 = 50;
 const FRAME_DURATION: f32 = 16.67;
 const FLY_VELOCITY: f32 = -2.5;
 const FALL_VELOCITY: f32 = 0.4;
+const MARGIN_LEFT: i32 = 5;
 
 enum GameMode {
     Menu,
@@ -23,7 +24,7 @@ impl State {
         State {
             mode: GameMode::Menu,
             frame_time: 0.0,
-            player: Player::new(5, 25),
+            player: Player::new(MARGIN_LEFT, 25),
             obstacle: Obstacle::new(SCREEN_WIDTH, 0),
             score: 0,
         }
@@ -54,7 +55,7 @@ impl State {
     fn restart(&mut self) {
         self.mode = GameMode::Playing;
         self.frame_time = 0.0;
-        self.player = Player::new(5, 25);
+        self.player = Player::new(MARGIN_LEFT, 25);
         self.obstacle = Obstacle::new(SCREEN_WIDTH, 0);
         self.score = 0
     }
@@ -114,7 +115,7 @@ impl Player {
         }
     }
     fn render(&mut self, ctx: &mut BTerm) {
-        ctx.set(0, self.y, YELLOW, BLACK, to_cp437('@'));
+        ctx.set(MARGIN_LEFT, self.y, YELLOW, BLACK, to_cp437('@'));
     }
 
     fn gravity_and_move(&mut self) {
@@ -147,7 +148,7 @@ impl Obstacle {
         }
     }
     fn render(&mut self, ctx: &mut BTerm, player_x: i32) {
-        let screen_x = self.x - player_x;
+        let screen_x = self.x - player_x + MARGIN_LEFT;
         let half_size = self.size / 2;
         //render top section
         for y in 0..self.gap_y - half_size {

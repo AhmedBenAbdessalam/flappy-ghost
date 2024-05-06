@@ -5,4 +5,4 @@ authors = ["Ahmed Ben Abdessalem"]
 edition = "2021"
 
 [dependencies]
-bracket-lib = "~0.8.1"
+bracket-lib = {git = "https://github.com/amethyst/bracket-lib"}
